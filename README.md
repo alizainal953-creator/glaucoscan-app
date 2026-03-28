@@ -107,7 +107,7 @@ We use Patient-Level K-Fold Split, ensuring:
 
 ## 📸 Dashboard Preview
 
-![alt text](image.png)
+![Dashboard Preview](dashboard.png)
 
 ---
 
