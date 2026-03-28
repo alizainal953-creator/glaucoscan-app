@@ -1,9 +1,41 @@
-# GlaucoScan AI — Streamlit Dashboard
-**IDSC 2025 · Glaucoma GON Detection**
+# 🧠 GlaucoScan AI  
+**Glaucoma GON Detection · IDSC 2026**
 
-This is a GlaucoScan AI, we use collab notebook to run the training by using EfficientNetB3 Backbone to extract the image  + Late Fusion (image quality score) + SVM Kernel RBF. We split it by K-Fold Patient Train Val Split to avoid data leakage. So, each patient has a chance to be the train dataset or validation dataset. We're going to show you how to run the dashboard. 
-Prepare : 
-## Folder Structure
+GlaucoScan AI is a deep learning–based diagnostic support system designed to detect **Glaucomatous Optic Neuropathy (GON)** from retinal fundus images.
+
+This project combines **CNN feature extraction + machine learning fusion** to achieve highly robust performance while minimizing data leakage through patient-level validation.
+
+🔗 **Live Dashboard**: https://glaucoscanidsc.streamlit.app  
+
+---
+
+## 🚀 Key Features
+- 🔍 EfficientNet-B3 Backbone for image feature extraction  
+- 🧩 Late Fusion Strategy (Image + Quality Score)  
+- 🤖 SVM (RBF Kernel) for final classification  
+- 🔁 5-Fold Patient-Level Cross Validation (no data leakage)  
+- 📊 Interactive Streamlit Dashboard  
+- 📈 Ensemble prediction from all folds  
+
+---
+
+## 🧠 Model Architecture
+
+Fundus Image  
+↓  
+EfficientNet-B3 (Feature Extractor)  
+↓  
++ Image Quality Score (Late Fusion)  
+↓  
+SVM (RBF Kernel)  
+↓  
+Final Prediction (GON / Normal)  
+
+---
+
+## 📁 Project Structure
+
+```
 glaucoscan/
 ├── app.py                  
 ├── requirements.txt
@@ -21,30 +53,81 @@ glaucoscan/
     └── model_config.json
 ```
 
-## Step by Step
+---
 
-```bash
-# 1. Install dependencies
+## ⚙️ Installation & Usage
+
+### 1. Clone Repository
+```
+git clone https://github.com/alizainal953-creator/glaucoscan.app.git
+cd glaucoscan.app
+```
+
+### 2. Install Dependencies
+```
 pip install -r requirements.txt
+```
 
-# 2. Put all of the files .pt and .joblib into folder streamlit_models/
+### 3. Prepare Model Files
+Place all `.pth` and `.joblib` files into:
+```
+streamlit_models/
+```
 
-# 3. Run 
+### 4. Run Dashboard
+```
 streamlit run app.py
 ```
 
-## Explanation
+---
 
-This model uses 5 fold training so instead of using one fold as the best result, we ensemble and average it by using 5 folds of model training. Here are the AUC Validation score in all fold :
+## 📊 Model Performance
 
-| Fold | Val AUC |
-|------|---------|
-| 0    | 0.9966  |
-| 1    | 0.9805  |
-| 2    | 0.9986  |
-| 3    | 0.9904  |
-| 4    | 0.9478  |
+| Fold | Validation AUC |
+|------|---------------|
+| 0    | 0.9966        |
+| 1    | 0.9805        |
+| 2    | 0.9986        |
+| 3    | 0.9904        |
+| 4    | 0.9478        |
 | **Mean** | **0.9828 ± 0.0188** |
 
-## Dashboard Link
-glaucoscan
+✨ Ensemble across all folds improves robustness and generalization.
+
+---
+
+## 🛡️ Validation Strategy
+
+We use Patient-Level K-Fold Split, ensuring:
+- No data leakage between train & validation  
+- Each patient appears in only one fold at a time  
+- More realistic clinical evaluation  
+
+---
+
+## 📸 Dashboard Preview
+
+![alt text](image.png)
+
+---
+
+## 📌 Tech Stack
+- Python  
+- PyTorch  
+- Scikit-learn  
+- Streamlit  
+- EfficientNet  
+
+---
+
+## 👨‍💻 Author
+Ali Zainal Abidin
+Rafidah Khoirunnisa 
+Maulida Rahmi
+Najwa Fadhilah 
+ITS Statistics Student · Data Enthusiast  
+
+---
+
+## ⭐ Notes
+This project was developed for IDSC 2026 and focuses on building a reliable AI-assisted screening tool for glaucoma detection.
